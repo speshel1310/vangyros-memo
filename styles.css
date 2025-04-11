@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #F8F9FA;
@@ -13,18 +12,24 @@ body {
     align-items: center;
     color: #333;
 }
-
 .container {
     text-align: center;
     padding: 20px;
     width: 100%;
     max-width: 800px;
 }
-
+/* Добавленные стили для логотипа */
+.logo-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.logo {
+    max-width: 200px;
+    height: auto;
+}
 .game-info {
     margin-top: 30px;
 }
-
 #restart-btn {
     padding: 12px 24px;
     font-size: 16px;
@@ -36,11 +41,9 @@ body {
     font-weight: 500;
     transition: background-color 0.2s ease;
 }
-
 #restart-btn:hover {
     background-color: #3A80D2;
 }
-
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -49,7 +52,6 @@ body {
     max-width: 600px;
     padding: 20px;
 }
-
 .card {
     aspect-ratio: 1;
     background-color: #FFFFFF;
@@ -62,11 +64,9 @@ body {
     transition: transform 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .card:hover {
     transform: translateY(-2px);
 }
-
 .card img {
     width: 100%;
     height: 100%;
@@ -74,21 +74,17 @@ body {
     display: none;
     border-radius: 12px;
 }
-
 .card.flipped {
     background-color: #F0F0F0;
     transform: rotateY(180deg);
 }
-
 .card.flipped img {
     display: block;
 }
-
 .card.matched {
     background-color: #000000;
     box-shadow: 0 0 0 2px #F7D33F;
 }
-
 #win-message {
     margin-top: 30px;
     padding: 20px;
@@ -99,37 +95,33 @@ body {
     font-weight: 500;
     animation: fadeIn 0.5s ease;
 }
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 .hidden {
     display: none;
 }
-
 /* Mobile responsiveness */
 @media (max-width: 480px) {
     .container {
         padding: 15px;
     }
-
+    .logo {
+        max-width: 150px;
+    }
     .game-board {
         gap: 8px;
         padding: 10px;
     }
-
     .card {
         border-radius: 8px;
     }
-
     #win-message {
         font-size: 16px;
         padding: 15px;
     }
 }
-
 /* Добавьте эти стили в ваш существующий CSS файл */
 .promo-code {
     color: #ffffff;
@@ -137,7 +129,6 @@ body {
     text-decoration: underline;
     transition: all 0.2s ease;
 }
-
 .promo-code:hover {
     color: #fff0b3;
 }
