@@ -7,7 +7,6 @@ class MemoryGame {
         this.flippedCards = [];
         this.isLocked = false;
         this.matchedPairs = 0;
-
         // Пути к изображениям карточек
         this.cardValues = [
             'images/card1.jpg',
@@ -21,14 +20,15 @@ class MemoryGame {
         ];
         
         this.init();
+        this.setupPromoCodeCopy();
     }
-
+    
     init() {
         this.matchedPairs = 0;
         this.createCards();
         this.setupEventListeners();
     }
-
+    
     createCards() {
         // Очищаем игровое поле
         this.gameBoard.innerHTML = '';
@@ -42,7 +42,6 @@ class MemoryGame {
             const j = Math.floor(Math.random() * (i + 1));
             [values[i], values[j]] = [values[j], values[i]];
         }
-
         // Создаем элементы карточек
         values.forEach((value, index) => {
             const card = document.createElement('div');
@@ -61,15 +60,40 @@ class MemoryGame {
             this.cards.push(card);
         });
     }
-
+    
     setupEventListeners() {
         this.cards.forEach(card => {
             card.addEventListener('click', () => this.flipCard(card));
         });
-
         this.restartBtn.addEventListener('click', () => this.restart());
     }
-
+    
+    setupPromoCodeCopy() {
+        const promoCode = document.getElementById('promo-code');
+        const notification = document.getElementById('copy-notification');
+        
+        if (promoCode) {
+            promoCode.addEventListener('click', () => {
+                const textToCopy = promoCode.textContent;
+                
+                // Копируем текст в буфер обмена
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        // Показываем уведомление
+                        notification.classList.add('show');
+                        
+                        // Скрываем уведомление через 2 секунды
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Не удалось скопировать текст: ', err);
+                    });
+            });
+        }
+    }
+    
     flipCard(card) {
         if (this.isLocked || 
             this.flippedCards.length === 2 || 
@@ -77,37 +101,33 @@ class MemoryGame {
             card.classList.contains('matched')) {
             return;
         }
-
         card.classList.add('flipped');
         this.flippedCards.push(card);
-
         if (this.flippedCards.length === 2) {
             this.checkMatch();
         }
     }
-
+    
     checkMatch() {
         const [card1, card2] = this.flippedCards;
         const match = card1.dataset.value === card2.dataset.value;
-
         if (match) {
             this.handleMatch(card1, card2);
         } else {
             this.handleMismatch(card1, card2);
         }
     }
-
+    
     handleMatch(card1, card2) {
         card1.classList.add('matched');
         card2.classList.add('matched');
         this.matchedPairs++;
         this.flippedCards = [];
-
         if (this.matchedPairs === this.cardValues.length) {
             this.winMessage.classList.remove('hidden');
         }
     }
-
+    
     handleMismatch(card1, card2) {
         this.isLocked = true;
         setTimeout(() => {
@@ -117,7 +137,7 @@ class MemoryGame {
             this.flippedCards = [];
         }, 1000);
     }
-
+    
     restart() {
         // Скрываем сообщение о победе
         this.winMessage.classList.add('hidden');
@@ -130,4 +150,4 @@ class MemoryGame {
 // Запускаем игру при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     new MemoryGame();
-}); 
+});
