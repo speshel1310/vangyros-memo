@@ -18,7 +18,7 @@ body {
     width: 100%;
     max-width: 800px;
 }
-/* Добавленные стили для логотипа */
+/* Стили для логотипа */
 .logo-container {
     margin-bottom: 20px;
     text-align: center;
@@ -94,6 +94,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     animation: fadeIn 0.5s ease;
+    position: relative;
 }
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
@@ -101,6 +102,38 @@ body {
 }
 .hidden {
     display: none;
+}
+/* Стили для промокода */
+.promo-code {
+    color: #000000;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 2px 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+.promo-code:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+/* Стили для уведомления о копировании */
+.copy-notification {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.copy-notification.show {
+    opacity: 1;
 }
 /* Mobile responsiveness */
 @media (max-width: 480px) {
@@ -121,14 +154,4 @@ body {
         font-size: 16px;
         padding: 15px;
     }
-}
-/* Добавьте эти стили в ваш существующий CSS файл */
-.promo-code {
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: underline;
-    transition: all 0.2s ease;
-}
-.promo-code:hover {
-    color: #fff0b3;
 }
