@@ -15,13 +15,18 @@
         <div class="game-board">
             <!-- Cards will be dynamically added here -->
         </div>
-        <div id="win-message" class="hidden">
-            Поздравляем с победой!<br>
-            Лови подарок: скидка 150Р по промокоду <span id="promo-code" class="promo-code">GAME</span>
-            <div class="copy-notification" id="copy-notification">Скопировано!</div>
-        </div>
-        <div class="game-info">
-            <button id="restart-btn">Начать заново</button>
+        
+        <div id="popup-overlay" class="hidden">
+            <div id="win-popup">
+                <div id="win-message">
+                    Поздравляем с победой!<br>
+                    Лови подарок: скидка 150Р по промокоду <span id="promo-code" class="promo-code">GAME</span>
+                    <div class="copy-notification" id="copy-notification">Скопировано!</div>
+                </div>
+                <div class="popup-buttons">
+                    <button id="restart-btn">Начать заново</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

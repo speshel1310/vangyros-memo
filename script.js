@@ -3,6 +3,7 @@ class MemoryGame {
         this.gameBoard = document.querySelector('.game-board');
         this.restartBtn = document.getElementById('restart-btn');
         this.winMessage = document.getElementById('win-message');
+        this.popupOverlay = document.getElementById('popup-overlay');
         this.cards = [];
         this.flippedCards = [];
         this.isLocked = false;
@@ -19,12 +20,21 @@ class MemoryGame {
             'images/card8.jpg'
         ];
         
+        // Явно скрываем всплывающее окно при запуске
+        if (this.popupOverlay) {
+            this.popupOverlay.classList.add('hidden');
+        }
+        
         this.init();
         this.setupPromoCodeCopy();
     }
     
     init() {
         this.matchedPairs = 0;
+        // Убедимся, что всплывающее окно скрыто при новой игре
+        if (this.popupOverlay) {
+            this.popupOverlay.classList.add('hidden');
+        }
         this.createCards();
         this.setupEventListeners();
     }
@@ -124,7 +134,7 @@ class MemoryGame {
         this.matchedPairs++;
         this.flippedCards = [];
         if (this.matchedPairs === this.cardValues.length) {
-            this.winMessage.classList.remove('hidden');
+            this.showWinPopup();
         }
     }
     
@@ -138,9 +148,13 @@ class MemoryGame {
         }, 1000);
     }
     
+    showWinPopup() {
+        this.popupOverlay.classList.remove('hidden');
+    }
+    
     restart() {
         // Скрываем сообщение о победе
-        this.winMessage.classList.add('hidden');
+        this.popupOverlay.classList.add('hidden');
         
         // Сбрасываем игру
         this.init();
