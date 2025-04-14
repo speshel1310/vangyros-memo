@@ -50,16 +50,16 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            ym(YOUR_COUNTER_ID, 'reachGoal', 'game_launch');
+            ym(101050921, 'reachGoal', 'game_launch');
 
             const restartBtn = document.getElementById('restart-btn');
             restartBtn.addEventListener('click', () => {
-                ym(YOUR_COUNTER_ID, 'reachGoal', 'game_played');
+                ym(101050921, 'reachGoal', 'game_played');
             });
 
             const promoCode = document.getElementById('promo-code');
             promoCode.addEventListener('click', () => {
-                ym(YOUR_COUNTER_ID, 'reachGoal', 'promo_code_used');
+                ym(101050921, 'reachGoal', 'promo_code_used');
             });
         });
     </script>
